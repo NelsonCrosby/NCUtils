@@ -31,7 +31,26 @@ import java.io.File;
  * @author Nelson Crosby
  */
 public enum Sys {
-    WINDOWS, MAC, LINUX, OTHER;
+    /** Represents a JVM running on Microsoft Windows */
+    WINDOWS,
+    /** Represents a JVM running on Apple Mac OS */
+    MAC,
+    /** Represents a JVM running on a Linux distribution */
+    LINUX,
+    /** Represents a JVM running on an OS not currently detected */
+    OTHER;
+
+    /**
+     * Checks if this system is UNIX-based
+     *
+     * @return {@code true} if {@code this} is a UNIX-based system (one of
+     *         {@link #MAC}, {@link #LINUX} or {@link #OTHER}).
+     */
+    public boolean isUnix() {
+        return this == MAC || this == LINUX
+                // Most other systems will likely be UNIX-based
+                || this == OTHER;
+    }
 
     public static final Sys SYSTEM;
     private static final File PRIVATE_DIRECTORY_PREFIX;
@@ -69,7 +88,9 @@ public enum Sys {
      * @return The {@link java.io.File} object for this directory, or null if this method cannot create the directory.
      */
     public static File generatePrivateDirectory(String appName) {
-        if (SYSTEM == LINUX || SYSTEM == OTHER) {
+        if (SYSTEM.isUnix() && SYSTEM != MAC /* Mac is UNIX-based, but private
+                                                directories have another place
+                                                to go*/) {
             // Best way to make something private in these systems is by prepending a dot
             appName = '.' + appName;
         }
