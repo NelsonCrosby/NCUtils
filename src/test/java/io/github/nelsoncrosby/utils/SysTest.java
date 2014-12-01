@@ -35,4 +35,12 @@ public class SysTest {
         else
             System.err.println("Not testing on a Windows system");
     }
+
+    @Test
+    public void testUnixy() throws Exception {
+        assertFalse(Sys.WINDOWS.isUnix());
+        assertTrue(Sys.MAC.isUnix());
+        assertTrue(Sys.LINUX.isUnix());
+        assertTrue(Sys.OTHER.isUnix());
+    }
 }
