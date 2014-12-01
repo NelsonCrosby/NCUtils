@@ -56,12 +56,14 @@ public enum Sys {
     private static final File PRIVATE_DIRECTORY_PREFIX;
 
     static {
+        // Configure the running system
         String os = System.getProperty("os.name").toLowerCase();
         SYSTEM = os.contains("windows") ? WINDOWS :
                 os.contains("mac") ? MAC :
                 os.contains("linux") ? LINUX :
                 OTHER;
 
+        // Configure PRIVATE_DIRECTORY_PREFIX for current system
         File userHome = new File(System.getProperty("user.home"));
         switch (SYSTEM) {
             case WINDOWS:
@@ -90,7 +92,7 @@ public enum Sys {
     public static File generatePrivateDirectory(String appName) {
         if (SYSTEM.isUnix() && SYSTEM != MAC /* Mac is UNIX-based, but private
                                                 directories have another place
-                                                to go*/) {
+                                                to go */) {
             // Best way to make something private in these systems is by prepending a dot
             appName = '.' + appName;
         }

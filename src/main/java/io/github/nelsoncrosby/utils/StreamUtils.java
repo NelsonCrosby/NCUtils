@@ -42,17 +42,17 @@ import java.io.*;
 public class StreamUtils {
     /**
      * The default block size in bytes.
-     * Given a method <code>streamAction(...)</code> whose parameter list does
-     *  not end with <code>int blockSize</code>, it is a wrapper that calls
-     *  <code>streamAction(..., DEFAULT_BLOCK_SIZE)</code>.
+     * Given a method {@code streamAction(...)} whose parameter list does
+     *  not end with {@code int blockSize}, wrappers are provided that call
+     *  {@code streamAction(..., DEFAULT_BLOCK_SIZE)}.
      */
     public static final int DEFAULT_BLOCK_SIZE = 1024;
 
     /**
      * The base for all other methods in this class.
      *
-     * It copies all remaining bytes until the EOF from <code>from</code> to
-     *  <code>to</code>. This is done in buffers of <code>blockSize</code>
+     * It copies all remaining bytes until the EOF from {@code from} to
+     *  {@code to}. This is done in buffers of {@code blockSize}
      *  bytes.
      *
      * This method closes both files at the end.
@@ -86,7 +86,7 @@ public class StreamUtils {
     }
 
     /**
-     * Reads all remaining bytes until EOF from <code>in</code> into a
+     * Reads all remaining bytes until EOF from {@code in} into a
      *  {@link ByteArrayOutputStream}. Intended use is one of: <blockquote><pre>
      *      readWholeStream(stream, blockSize).toByteArray()
      *      readWholeStream(stream, blockSize).toString()
@@ -96,7 +96,7 @@ public class StreamUtils {
      *
      * @param in The source stream
      * @param blockSize The size of the buffer to be used
-     * @return A {@link ByteArrayOutputStream} containing the contents of <code>in</code>
+     * @return A {@link ByteArrayOutputStream} containing the contents of {@code in}
      * @throws IOException
      * @see #copyStreams
      */
@@ -107,11 +107,11 @@ public class StreamUtils {
     }
 
     /**
-     * Wrapper for {@link #readWholeStream} using a <code>blockSize</code> of
+     * Wrapper for {@link #readWholeStream} using a {@code blockSize} of
      *  {@value #DEFAULT_BLOCK_SIZE}.
      *
      * @param in The source stream
-     * @return A {@link ByteArrayOutputStream} containing the contents of <code>in</code>
+     * @return A {@link ByteArrayOutputStream} containing the contents of {@code in}
      * @throws IOException
      * @see #readWholeStream
      */
@@ -121,7 +121,7 @@ public class StreamUtils {
 
     /**
      * Wrapper for {@link #readWholeStream} that creates a
-     *  {@link FileInputStream} from <code>from</code>.
+     *  {@link FileInputStream} from {@code from}.
      *
      * @param from The {@link File} to read from
      * @param blockSize The size of the buffer to be used
@@ -134,7 +134,7 @@ public class StreamUtils {
     }
 
     /**
-     * Wrapper for {@link #readWholeFile} using a <code>blockSize</code> of
+     * Wrapper for {@link #readWholeFile} using a {@code blockSize} of
      *  {@value #DEFAULT_BLOCK_SIZE}.
      *
      * @param from The {@link File} to read from
@@ -148,7 +148,7 @@ public class StreamUtils {
 
     /**
      * Wrapper for {@link #readWholeFile} that creates a {@link File}
-     *  from <code>fileName</code>.
+     *  from {@code fileName}.
      *
      * @param fileName The {@link String} path of the file
      * @param blockSize The size of the buffer to be used
@@ -162,7 +162,7 @@ public class StreamUtils {
 
     /**
      * Wrapper for {@link #readWholeFile(String, int)} using a
-     *  <code>blockSize</code> of {@value #DEFAULT_BLOCK_SIZE}.
+     *  {@code blockSize} of {@value #DEFAULT_BLOCK_SIZE}.
      *
      * @param fileName The {@link String} path of the file
      * @return A {@link ByteArrayOutputStream} containing the contents of the file
@@ -174,7 +174,7 @@ public class StreamUtils {
     }
 
     /**
-     * Writes the bytes <code>toWrite</code> into <code>out</code> using a
+     * Writes the bytes {@code toWrite} into {@code out} using a
      *  {@link ByteArrayInputStream} and {@link #copyStreams}.
      *
      * @param toWrite The bytes to write
@@ -189,7 +189,7 @@ public class StreamUtils {
     }
 
     /**
-     * Wrapper for {@link #writeToStream} using a <code>blockSize</code> of
+     * Wrapper for {@link #writeToStream} using a {@code blockSize} of
      *  {@value #DEFAULT_BLOCK_SIZE}.
      *
      * @param toWrite The bytes to write
@@ -202,7 +202,7 @@ public class StreamUtils {
     }
 
     /**
-     * Wrapper for {@link #writeToStream} that converts <code>toWrite</code>
+     * Wrapper for {@link #writeToStream} that converts {@code toWrite}
      *  using {@link String#getBytes()}
      *
      * @param toWrite The {@link String} to write
@@ -217,7 +217,7 @@ public class StreamUtils {
 
     /**
      * Wrapper for {@link #writeToStream(String, OutputStream, int)}
-     *  using a <code>blockSize</code> of {@value #DEFAULT_BLOCK_SIZE}.
+     *  using a {@code blockSize} of {@value #DEFAULT_BLOCK_SIZE}.
      *
      * @param toWrite The {@link String} to write
      * @param out The destination stream
