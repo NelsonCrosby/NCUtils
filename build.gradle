@@ -57,8 +57,9 @@ publishing {
 }
 
 bintray {
-    user = bintrayUser      // Should be defined in ~/.gradle/gradle.properties
-    key = bintrayKey        // Should be defined in ~/.gradle/gradle.properties
+    // Define these in gradle.properties for distribution
+    user = hasProperty('bintrayUser') ? bintrayUser : ''
+    key = hasProperty('bintrayKey') ? bintrayKey : ''
 
     publications = ['mavenJava']
     pkg {
