@@ -23,6 +23,12 @@ public class StreamUtilsTest {
     public StreamUtilsTest() {
     }
 
+    /**
+     * Test the {@link StreamUtils#copyStreams} method using a block size of a
+     *  single byte.
+     *
+     * @throws Exception
+     */
     @Test
     public void testCopyStreamsSingleByteBlockSize() throws Exception {
         try (ByteArrayInputStream source = new ByteArrayInputStream(testContent);
@@ -38,11 +44,18 @@ public class StreamUtilsTest {
         }
     }
 
+    /**
+     * Test the {@link StreamUtils#copyStreams} method using a probably-uneven
+     *  block size (ensure that it won't be an issue).
+     *
+     * @throws Exception
+     */
     @Test
     public void testCopyStreamsUnevenBlockSize() throws Exception {
         try (ByteArrayInputStream source = new ByteArrayInputStream(this.testContent);
              ByteArrayOutputStream destination = new ByteArrayOutputStream(this.testContent.length)) {
 
+            // Generate a block size that is probably not divisible into bytes
             int somewhatEvenBlockSize = this.testContent.length / 8;
             int notEvenBlockSize = somewhatEvenBlockSize - 2;
 

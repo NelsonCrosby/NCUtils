@@ -66,7 +66,9 @@ public class StreamUtils {
     public static void copyStreams(InputStream from, OutputStream to, int blockSize) throws IOException {
         byte[] buffer = new byte[blockSize];
         int bytesRead;
-        while ((bytesRead = from.read(buffer)) != -1) {
+        while ((bytesRead = from.read(buffer) /* Read bytes into buffer */)
+                != -1 /* Check that EOF not reached */) {
+            // Write buffer into destination
             to.write(buffer, 0, bytesRead);
         }
         from.close();
