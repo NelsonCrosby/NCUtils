@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'java'
 
-version = '0.1.2'
+version = '0.2-dev'
 
 repositories {
     jcenter()
