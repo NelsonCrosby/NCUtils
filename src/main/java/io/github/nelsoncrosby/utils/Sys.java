@@ -56,7 +56,7 @@ public enum Sys {
     private static final File PRIVATE_DIRECTORY_PREFIX;
 
     static {
-        // Configure the running system
+        // Define the running system
         String os = System.getProperty("os.name").toLowerCase();
         SYSTEM = os.contains("windows") ? WINDOWS :
                 os.contains("mac") ? MAC :
@@ -71,6 +71,10 @@ public enum Sys {
                 break;
             case MAC:
                 PRIVATE_DIRECTORY_PREFIX = new File(userHome, "Library/Application Support");
+                break;
+            case LINUX:
+                // Linux has a new place for config stuff to go
+                PRIVATE_DIRECTORY_PREFIX = new File(userHome, ".local/share");
                 break;
             default:
                 // Prepend a dot and place it in user home
@@ -90,9 +94,10 @@ public enum Sys {
      * @return The {@link java.io.File} object for this directory, or null if this method cannot create the directory.
      */
     public static File generatePrivateDirectory(String appName) {
-        if (SYSTEM.isUnix() && SYSTEM != MAC /* Mac is UNIX-based, but private
-                                                directories have another place
-                                                to go */) {
+        if (SYSTEM.isUnix() &&
+                !(SYSTEM == MAC /* Mac is UNIX-based, but private directories
+                                   have another place to go */
+                || SYSTEM == LINUX /* Linux has a new place which is tidier */)) {
             // Best way to make something private in these systems is by prepending a dot
             appName = '.' + appName;
         }
