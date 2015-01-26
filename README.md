@@ -1,5 +1,8 @@
 # NCUtils #
 
+[![Build Status](https://travis-ci.org/NelsonCrosby/NCUtils.svg?branch=master)]
+ (https://travis-ci.org/NelsonCrosby/NCUtils)
+
 A small collection of everyday Java utilities
 
 
@@ -12,7 +15,7 @@ Using with Gradle:
     }
 
     dependencies {
-        compile 'io.github.nelsoncrosby:NCUtils:0.1.1'
+        compile 'io.github.nelsoncrosby:NCUtils:<version>'
     }
 
 Using with Maven: [See "Set me up!" on BinTray page]
